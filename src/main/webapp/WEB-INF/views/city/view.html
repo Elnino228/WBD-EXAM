@@ -18,22 +18,35 @@
 <body>
 <h1>Detail</h1>
 <p>
-    <a href="/citys">city list</a>
+    <a href="/cities">City list</a>
 </p>
-<form th:action="@{/citys/view}" th:object="${city}" method="post">
+<form th:action="@{/cities/view}" th:object="${city}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td style="font-weight: bold">Title:</td>
-            <td th:text="${city.getTitle()}"></td>
+            <td style="font-weight: bold">Name:</td>
+            <td th:text="${city.getName()}"></td>
         </tr>
         <tr>
-            <td style="font-weight: bold">Type:</td>
-            <td th:text="${city.getType().getName()}"></td>
+            <td style="font-weight: bold">Nation:</td>
+            <td th:text="${city.getNation().getName()}"></td>
         </tr>
         <tr>
-            <td style="font-weight: bold">Content:</td>
-            <td th:text="${city.getContent()}"></td>
+            <td style="font-weight: bold">Area:</td>
+            <td th:text="${city.getArea()}"></td>
+        </tr><tr>
+            <td style="font-weight: bold">Population:</td>
+            <td th:text="${city.getPopulation()}"></td>
+        </tr><tr>
+            <td style="font-weight: bold">GDP:</td>
+            <td th:text="${city.getGdp()}"></td>
+        </tr><tr>
+            <td style="font-weight: bold">Description:</td>
+            <td th:text="${city.getDescription()}"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Edit"></td>
+            <td><input type="submit" value="Delete"></td>
         </tr>
     </table>
 </form>

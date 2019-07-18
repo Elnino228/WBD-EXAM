@@ -1,6 +1,8 @@
 package com.codegym.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "cities")
@@ -9,13 +11,22 @@ public class City {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Size(max = 50)
     private String name;
+
+    @Min(0)
     private double area;
+
+    @Min(0)
     private Long population;
+
+    @Min(0)
     private double gdp;
+
+    @Size(min = 50)
     private String description;
 
-    public City(){
+    public City() {
     }
 
     @ManyToOne

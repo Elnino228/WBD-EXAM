@@ -40,6 +40,7 @@
         <tr>
             <td>Name:</td>
             <td><input th:field="*{name}"/></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
         </tr>
         <tr>
             <td>Nation:</td>
@@ -52,18 +53,22 @@
         <tr>
             <td>Area:</td>
             <td><input th:field="*{area}"/></td>
+            <td style="color: red;" th:if="${#fields.hasErrors('area')}" th:errors="*{area}">Area Error</td>
         </tr>
         <tr>
             <td>Population:</td>
             <td><input th:field="*{population}"/></td>
+            <td style="color: red;" th:if="${#fields.hasErrors('population')}" th:errors="*{population}">Population Error</td>
         </tr>
         <tr>
             <td>GDP:</td>
             <td><input th:field="*{gdp}"/></td>
+            <td style="color: red;" th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}">GDP Error</td>
         </tr>
         <tr>
             <td>Description:</td>
             <td><textarea cols="20" rows="5" th:field="*{description}"/></td>
+            <td style="color: red;" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</td>
         </tr>
         <tr>
             <td></td>

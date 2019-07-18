@@ -6,11 +6,10 @@ import com.codegym.model.Nation;
 import com.codegym.service.CityService;
 import com.codegym.service.NationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,12 +47,13 @@ public class CityController {
     }
 
     @PostMapping("/create")
-    public ModelAndView createCity(@ModelAttribute("city") City city){
+    public String createCity(@Validated @ModelAttribute("city") City city, BindingResult bindingResult, Model model){
+        if (bindingResult.hasFieldErrors()){
+            return "/city/create";
+        }
         cityService.save(city);
-        ModelAndView modelAndView=new ModelAndView("/city/create");
-        modelAndView.addObject("city",new City());
-        modelAndView.addObject("message","New city is created successfully");
-        return modelAndView;
+        model.addAttribute("message","New city is created successfully");
+        return "redirect:/cities";
     }
 
     @GetMapping("/view/{id}")
@@ -97,10 +97,13 @@ public class CityController {
     }
 
     @PostMapping("/edit")
-    public String editCity(@ModelAttribute("city") City city, Model model){
+    public String editCity(@Validated @ModelAttribute("city") City city,BindingResult bindingResult,Model model){
+        if (bindingResult.hasFieldErrors()){
+            return "/city/edit";
+        }
         cityService.save(city);
         model.addAttribute("message","City is updated successfully");
-        return "/city/edit";
+        return "redirect:/cities";
     }
 
 }

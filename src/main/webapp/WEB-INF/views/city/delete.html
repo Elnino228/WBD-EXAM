@@ -31,22 +31,14 @@
 <h1>Delete city</h1>
 <h2>Are you sure?</h2>
 <p>
-    <a href="/citys">city list</a>
+    <a href="/cities">City list</a>
 </p>
-<form th:action="@{/citys/delete}" th:object="${city}" method="post">
+<form th:action="@{/cities/delete}" th:object="${city}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td style="font-weight: bold">Title:</td>
-            <td th:text="${city.title}"></td>
-        </tr>
-        <tr>
-            <td style="font-weight: bold">Type:</td>
-            <td th:text="${city.type.name}"></td>
-        </tr>
-        <tr>
-            <td style="font-weight: bold">Content:</td>
-            <td th:text="${city.content}"></td>
+            <td style="font-weight: bold">City:</td>
+            <td th:text="${city.name}"></td>
         </tr>
         <tr>
             <td></td>

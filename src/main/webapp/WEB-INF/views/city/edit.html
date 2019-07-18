@@ -30,32 +30,51 @@
 <body>
 <h1>Edit city</h1>
 <p>
-    <a href="/citys">city list</a>
+    <a href="/cities">City list</a>
 </p>
 <th:block th:if="${message}">
     <p style="color: red;" th:text="${message}"></p>
 </th:block>
-<form th:action="@{/citys/edit}" th:object="${city}" method="post">
+<form th:action="@{/cities/edit}" th:object="${city}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>Title:</td>
-            <td><textarea cols="30" rows="2" th:field="*{title}"/></td>
+            <td>Name:</td>
+            <td><input th:field="*{name}"/></td>
         </tr>
         <tr>
-            <td>Type:</td>
+            <td>Nation:</td>
             <td>
-                <select name="type">
-                    <option th:each="type : ${types}"
-                            th:value="${type.id}"
-                            th:text="${type.name}"
-                            th:selected="(${type.id} == *{type.id})"></option>
+                <select name="nation">
+                    <option th:each="nation : ${nations}"
+                            th:value="${nation.id}"
+                            th:text="${nation.name}"
+                            th:selected="(${nation.id} == *{nation.id})"></option>
                 </select>
             </td>
         </tr>
         <tr>
-            <td>Content:</td>
-            <td><textarea cols="30" rows="2" th:field="*{content}"/></td>
+            <td>Area:</td>
+            <td><input th:field="*{area}"/></td>
+            <td style="color: red;" th:if="${#fields.hasErrors('area')}" th:errors="*{area}">Area Error</td>
+        </tr>
+        <tr>
+            <td>Population:</td>
+            <td><input th:field="*{population}"/></td>
+            <td style="color: red;" th:if="${#fields.hasErrors('population')}" th:errors="*{population}">Population Error</td>
+
+        </tr>
+        <tr>
+            <td>GDP:</td>
+            <td><input th:field="*{gdp}"/></td>
+            <td style="color: red;" th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}">GDP Error</td>
+
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><textarea cols="20" rows="5" th:field="*{description}"/></td>
+            <td style="color: red;" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</td>
+
         </tr>
         <tr>
             <td></td>

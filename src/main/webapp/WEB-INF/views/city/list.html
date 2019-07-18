@@ -48,57 +48,24 @@
     }
 </style>
 <body>
-<h1>citys</h1>
+<h1>City list</h1>
 <a href="/cities/create">Create new city</a>
 <!--<br>-->
 <!--<br>-->
-<!--<th:block th:if="${message}">-->
-<!--    <p th:text="${message}"></p>-->
-<!--</th:block>-->
-<!--<form>-->
-<!--    &lt;!&ndash;    <p>Search by title or content:</p>&ndash;&gt;-->
-<!--    <input name="search" type="text"/>-->
-<!--    <input type="submit" value="Search"/>-->
-<!--</form>-->
-<!--<br/>-->
-<!--<th:block th:if="${search}">-->
-<!--    <a th:href="@{/cities}">Back to list</a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--</th:block>-->
-<!--<form>-->
-<!--    <select name="type_id" style="width: 180px; height: 25px">-->
-<!--        <option th:each="nation:${nations}" th:value="${nation.id}" th:text="${nation.name}"></option>-->
-<!--    </select>-->
-<!--    <input type="submit" value="Sort">-->
-<!--</form>-->
-<!--<th:block th:if="${type_id}">-->
-<!--    <br>-->
-<!--    <a th:href="@{/citys}">Back to list</a>-->
-<!--    <br>-->
-<!--</th:block>-->
-<!--<br>-->
+<th:block th:if="${message}">
+    <p style="color: red;" th:text="${message}"></p>
+</th:block>
 <table border="1">
     <tr>
         <th>Name</th>
         <th>Nation</th>
-        <th>Area</th>
-        <th>Population</th>
-        <th>GDP</th>
-        <th>Description</th>
         <th>Action</th>
     </tr>
     <th:block th:each="city : ${cities}">
         <tr>
-            <td th:text="${city.name}"></td>
+            <td><a th:href="@{/cities/view/__${city.id}__}" th:text="${city.name}"></a></td>
             <td th:text="${city.nation.name}"></td>
-            <td th:text="${city.area}"></td>
-            <td th:text="${city.population}"></td>
-            <td th:text="${city.gdp}"></td>
-            <td th:text="${city.description}"></td>
-<!--            <td><a th:href="@{/cities/viewtype(id=${city.type.id})}" th:text="${city.type.name}"></a></td>-->
             <td>
-                <a th:href="@{/cities/view/__${city.id}__}">View</a> |
                 <a th:href="@{/cities/edit/__${city.id}__ }">Edit</a> |
                 <a th:href="@{/cities/delete/__${city.id}__}">Delete</a>
             </td>
