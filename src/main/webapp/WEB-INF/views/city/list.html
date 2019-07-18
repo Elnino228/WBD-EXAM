@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    table {
+        width: 50%;
+        text-align: center;
+    }
+
+    form {
+        position: relative;
+        /*left: 40%;*/
+        /*!*top: 200px;*!*/
+    }
+
+    input[type=submit] {
+        width: 100px;
+        height: 25px;
+        background-color: #4CAF50;
+        color: white;
+        /*padding: 14px 20px;*/
+        /*margin: 8px 0;*/
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    input[type=text] {
+        height: 20px;
+    }
+</style>
+<body>
+<h1>citys</h1>
+<a href="/cities/create">Create new city</a>
+<!--<br>-->
+<!--<br>-->
+<!--<th:block th:if="${message}">-->
+<!--    <p th:text="${message}"></p>-->
+<!--</th:block>-->
+<!--<form>-->
+<!--    &lt;!&ndash;    <p>Search by title or content:</p>&ndash;&gt;-->
+<!--    <input name="search" type="text"/>-->
+<!--    <input type="submit" value="Search"/>-->
+<!--</form>-->
+<!--<br/>-->
+<!--<th:block th:if="${search}">-->
+<!--    <a th:href="@{/cities}">Back to list</a>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--</th:block>-->
+<!--<form>-->
+<!--    <select name="type_id" style="width: 180px; height: 25px">-->
+<!--        <option th:each="nation:${nations}" th:value="${nation.id}" th:text="${nation.name}"></option>-->
+<!--    </select>-->
+<!--    <input type="submit" value="Sort">-->
+<!--</form>-->
+<!--<th:block th:if="${type_id}">-->
+<!--    <br>-->
+<!--    <a th:href="@{/citys}">Back to list</a>-->
+<!--    <br>-->
+<!--</th:block>-->
+<!--<br>-->
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Nation</th>
+        <th>Area</th>
+        <th>Population</th>
+        <th>GDP</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    <th:block th:each="city : ${cities}">
+        <tr>
+            <td th:text="${city.name}"></td>
+            <td th:text="${city.nation.name}"></td>
+            <td th:text="${city.area}"></td>
+            <td th:text="${city.population}"></td>
+            <td th:text="${city.gdp}"></td>
+            <td th:text="${city.description}"></td>
+<!--            <td><a th:href="@{/cities/viewtype(id=${city.type.id})}" th:text="${city.type.name}"></a></td>-->
+            <td>
+                <a th:href="@{/cities/view/__${city.id}__}">View</a> |
+                <a th:href="@{/cities/edit/__${city.id}__ }">Edit</a> |
+                <a th:href="@{/cities/delete/__${city.id}__}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<!--<div>-->
+<!--    <a th:href="@{'/citys'(page=${citys.number - 1})}" th:if="${citys.hasPrevious()}">Previous</a>-->
+<!--    <span th:text="${citys.number + 1}"></span>/<span th:text="${citys.totalPages}"></span>-->
+<!--    <a th:href="@{'/citys'(page=${citys.number + 1})}" th:if="${citys.hasNext()}">Next</a>-->
+<!--</div>-->
+<br>
+<br>
+<footer>&copy; 2019 Dao Van Dat</footer>
+</body>
+</html>

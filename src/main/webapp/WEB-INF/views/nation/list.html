@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/nations/create">Create new nation</a>
+<h1>Notetype list</h1>
+<table border="1">
+    <tr>
+        <th>Name</th>
+    </tr>
+    <th:block th:each="nation : ${nations}">
+        <tr>
+            <td th:text="${nation.name}"></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

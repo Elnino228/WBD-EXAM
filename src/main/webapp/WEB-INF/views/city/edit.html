@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit city</title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    form {
+        position: relative;
+        /*left: 40%;*/
+        /*!*top: 200px;*!*/
+    }
+    input[type=submit] {
+        width: 100px;
+        height: 40px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        /*margin: 8px 0;*/
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+<body>
+<h1>Edit city</h1>
+<p>
+    <a href="/citys">city list</a>
+</p>
+<th:block th:if="${message}">
+    <p style="color: red;" th:text="${message}"></p>
+</th:block>
+<form th:action="@{/citys/edit}" th:object="${city}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Title:</td>
+            <td><textarea cols="30" rows="2" th:field="*{title}"/></td>
+        </tr>
+        <tr>
+            <td>Type:</td>
+            <td>
+                <select name="type">
+                    <option th:each="type : ${types}"
+                            th:value="${type.id}"
+                            th:text="${type.name}"
+                            th:selected="(${type.id} == *{type.id})"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Content:</td>
+            <td><textarea cols="30" rows="2" th:field="*{content}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update city"></td>
+        </tr>
+    </table>
+</form>
+<br>
+<br>
+<footer>&copy; 2019 Dao Van Dat</footer>
+</body>
+</html>

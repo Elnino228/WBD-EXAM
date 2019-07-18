@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View city</title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    form {
+        position: relative;
+        /*left: 40%;*/
+        /*!*top: 200px;*!*/
+    }
+</style>
+<body>
+<h1>Detail</h1>
+<p>
+    <a href="/citys">city list</a>
+</p>
+<form th:action="@{/citys/view}" th:object="${city}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td style="font-weight: bold">Title:</td>
+            <td th:text="${city.getTitle()}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold">Type:</td>
+            <td th:text="${city.getType().getName()}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold">Content:</td>
+            <td th:text="${city.getContent()}"></td>
+        </tr>
+    </table>
+</form>
+<br>
+<br>
+<footer>&copy; 2019 Dao Van Dat</footer>
+</body>
+</html>

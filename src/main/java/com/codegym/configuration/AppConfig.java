@@ -1,5 +1,11 @@
 package com.codegym.configuration;
 
+import com.codegym.formatter.NationFormatter;
+import com.codegym.model.Nation;
+import com.codegym.service.CityService;
+import com.codegym.service.NationService;
+import com.codegym.service.impl.CityServiceImpl;
+import com.codegym.service.impl.NationServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -44,15 +50,15 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         this.applicationContext = applicationContext;
     }
 
-//    @Bean
-//    public NoteService noteService(){
-//        return new NoteServiceImpl();
-//    }
-//
-//    @Bean
-//    public TypeService typeService(){
-//        return new TypeServiceImpl();
-//    }
+    @Bean
+    public CityService cityService(){
+        return new CityServiceImpl();
+    }
+
+    @Bean
+    public NationService nationService(){
+        return new NationServiceImpl();
+    }
 
     //Thymeleaf Configuration
     @Bean
@@ -124,8 +130,8 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     }
 
     //formatter
-//    @Override
-//    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new TypeFormatter(applicationContext.getBean(TypeService.class)));
-//    }
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new NationFormatter(applicationContext.getBean(NationService.class)));
+    }
 }

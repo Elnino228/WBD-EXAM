@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create city</title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    form {
+        position: relative;
+        /*left: 40%;*/
+        /*!*top: 200px;*!*/
+    }
+    input[type=submit] {
+        width: 100px;
+        height: 40px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        /*margin: 8px 0;*/
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+<body>
+<h1>Create city</h1>
+<p>
+    <a href="/cities">City list</a>
+</p>
+<th:block th:if="${message}">
+    <p style="color: red;" th:text="${message}"></p>
+</th:block>
+<form th:action="@{/cities/create}" th:object="${city}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Nation:</td>
+            <td>
+                <select th:field="*{nation}">
+                    <option th:each="nation:${nations}" th:value="${nation.id}" th:text="${nation.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Area:</td>
+            <td><input th:field="*{area}"/></td>
+        </tr>
+        <tr>
+            <td>Population:</td>
+            <td><input th:field="*{population}"/></td>
+        </tr>
+        <tr>
+            <td>GDP:</td>
+            <td><input th:field="*{gdp}"/></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><textarea cols="20" rows="5" th:field="*{description}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add a new city"></td>
+        </tr>
+    </table>
+</form>
+<br>
+<br>
+<footer>&copy; 2019 Dao Van Dat</footer>
+</body>
+</html>
