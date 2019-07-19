@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html"  charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>Login</title>
+</head>
+<body>
+<h2>Login</h2>
+<hr/>
+<h3>
+    <!-- Print the logged in user name -->
+    <div sec:authorize="isAuthenticated()">
+        Welcome ! <span sec:authentication="principal.username"></span>
+    </div>
+</h3>
+<div sec:authorize="isAnonymous()">
+    Login as <a th:href="@{/user/cities}">User</a> or <a th:href="@{/admin/cities}">Admin</a>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <a th:href="@{/logout}">Logout</a>
+</div>
+<h4>Note:</h4>
+<p> - User can only see list city and city detail information.</p>
+<p> - Admin can see, manage list city.</p>
+</body>
+</html>

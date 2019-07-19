@@ -4,14 +4,17 @@ import com.codegym.model.Nation;
 import com.codegym.service.NationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.util.Locale;
 
+@Component
 public class NationFormatter implements Formatter<Nation> {
-    private NationService nationService;
 
     @Autowired
+    private NationService nationService;
+
     public NationFormatter(NationService nationService){
         this.nationService=nationService;
     }

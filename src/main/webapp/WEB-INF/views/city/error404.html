@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Not found</title>
+    <meta http-equiv="Content-Type" content="text/html"  charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title th:text="#{city.title.notfound}"></title>
 </head>
 <body>
-<h1> 404 Not found</h1>
+<h1 th:text="#{city.title.notfound}"></h1>
 </body>
 </html>

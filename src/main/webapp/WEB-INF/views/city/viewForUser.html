@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html"  charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title th:text="#{city.title.detail}"></title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+
+    form {
+        position: relative;
+    }
+
+    #cities td, #cities th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #cities tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #cities tr:hover {
+        background-color: #ddd;
+    }
+
+    #cities th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    input[type=submit] {
+        width: 80px;
+        height: 30px;
+        position: relative;
+        top: 250px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    button {
+        width: 80px;
+        height: 30px;
+        position: relative;
+        top: 250px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    button:hover {
+        background-color: #ff00ff;
+    }
+
+    input[type=submit]:hover {
+        background-color: #ff00ff;
+    }
+
+</style>
+<body>
+<h1 th:text="#{city.title.detail}"></h1>
+<form th:object="${city}">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table id="cities">
+        <a href="/user/cities">
+            <button style="top:10px; width: 100px" type="button" th:text="#{city.btn.back}"></button>
+        </a>
+        <br>
+        <br>
+        <tr>
+            <td style="font-weight: bold" th:text="#{city.name}"></td>
+            <td th:text="${city.getName()}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold" th:text="#{city.nation}"></td>
+            <td th:text="${city.getNation().getName()}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold" th:text="#{city.area}"></td>
+            <td th:text="${city.getArea()}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold" th:text="#{city.population}"></td>
+            <td th:text="${city.getPopulation()}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold" th:text="#{city.gdp}"></td>
+            <td th:text="${city.getGdp()}"></td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold" th:text="#{city.description}"></td>
+            <td th:text="${city.getDescription()}"></td>
+        </tr>
+        <br>
+        <br>
+    </table>
+</form>
+<br><br><br>
+<footer>&copy; 2019 Dao Van Dat</footer>
+</body>
+</html>

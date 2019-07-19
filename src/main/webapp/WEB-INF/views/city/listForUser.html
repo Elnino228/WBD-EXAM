@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html"  charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title th:text="#{city.title.list}"></title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+    }
+    table {
+        width: 50%;
+        text-align: center;
+    }
+    form {
+        position: relative;
+    }
+    #cities td, #cities th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #cities tr:nth-child(even){background-color: #f2f2f2;}
+
+    #cities tr:hover {background-color: #ddd;}
+
+    #cities th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    input[type=submit] {
+        width: 100px;
+        height: 35px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    input[type=text] {
+        height: 20px;
+    }
+    button:hover {
+        background-color:#ff00ff;
+    }
+    input[type=submit]:hover  {
+        background-color:#ff00ff;
+    }
+</style>
+<body>
+<span th:text="#{city.language}"></span><a href="?lang=en_US">English</a> | <a href="?lang=vi_VN">VietNamese</a>
+<p><a th:href="@{/}" th:text="#{city.home}"></a></p>
+<h1 th:text="#{city.title.list}"></h1>
+<br>
+<br>
+<br>
+<th:block th:if="${message}">
+    <p style="color: red;" th:text="${message}"></p>
+</th:block>
+<form>
+    <input name="search" type="text"/>
+    <input type="submit" th:value="#{city.btn.search}"/>
+</form><br/>
+<table id="cities">
+    <tr>
+        <th>#</th>
+        <th th:text="#{city.name}"></th>
+        <th th:text="#{city.nation}"></th>
+        <th th:text="#{city.title.action}"></th>
+    </tr>
+    <th:block th:each="city,serial : ${cities}">
+        <tr>
+            <td th:text="${serial.index+1}"></td>
+            <td th:text="${city.name}"></td>
+            <td th:text="${city.nation.name}"></td>
+            <td>
+                <a th:href="@{/user/cities/view/__${city.id}__ }" th:text="#{city.btn.view}"></a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{/user/cities(page=${cities.number - 1})}" th:if="${cities.hasPrevious()}" th:text="#{city.previous}"></a>
+    <span th:text="${cities.number + 1}"></span>/<span th:text="${cities.totalPages}"></span>
+    <a th:href="@{/user/cities (page=${cities.number + 1})}" th:if="${cities.hasNext()}" th:text="#{city.next}"></a>
+</div>
+<br>
+<br>
+<footer>&copy; 2019 Dao Van Dat</footer>
+</body>
+</html>
